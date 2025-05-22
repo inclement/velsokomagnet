@@ -1,0 +1,363 @@
+title History of the Velsokomagnet
+author inclement
+homepage www.puzzlescript.net
+
+require_player_movement
+key_repeat_interval 0.1
+run_rules_on_level_start
+
+========
+OBJECTS
+========
+
+Nothing
+black
+
+Background
+#eeeeee #eeeeee
+01000
+01000
+10011
+00100
+01000
+
+Target
+#c9c9c9 #eeeeee green
+01010
+10001
+00200
+10001
+01010
+
+PlayerTarget
+#c9c9c9 darkgreen green
+.0.0.
+00000
+.020.
+00000
+.0.0.
+
+Wall
+#a59aa5 #bb77bb
+00000
+00000
+00000
+00000
+00000
+
+WallBase
+#a59aa5 #bb77bb #aa9daa
+00000
+00000
+00000
+00000
+11111
+
+Player
+#0055ee
+.0.0.
+00000
+.000.
+00000
+.0.0.
+
+
+Crate
+#ee8822
+0.0.0
+.000.
+00000
+.000.
+0.0.0
+
+PlayerCrateRightMarker
+#ee8822
+....0
+.....
+....0
+.....
+....0
+
+PlayerCrateAboveMarker
+#ee8822
+0.0.0
+.....
+.....
+.....
+.....
+
+PlayerCrateLeftMarker
+#ee8822
+0....
+.....
+0....
+.....
+0....
+
+PlayerCrateBelowMarker
+#ee8822
+.....
+.....
+.....
+.....
+0.0.0
+
+CratePlayerRightMarker
+#0055ee
+.....
+....0
+.....
+....0
+.....
+
+CratePlayerAboveMarker
+#0055ee
+.0.0.
+.....
+.....
+.....
+.....
+
+CratePlayerLeftMarker
+#0055ee
+.....
+0....
+.....
+0....
+.....
+
+CratePlayerBelowMarker
+#0055ee
+.....
+.....
+.....
+.....
+.0.0.
+
+MovedCrateMarker
+pink
+00000
+0...0
+0...0
+0...0
+00000
+
+CrateOnTargetMarker
+lightgreen
+.....
+.....
+..0..
+.....
+.....
+
+PlayerOnTargetMarker
+lightgreen
+.....
+.....
+..0..
+.....
+.....
+
+MovedPlayerMarker
+red
+
+NextPlayerPositionMarker
+purple
+
+=======
+LEGEND
+=======
+
+. = Background
+# = Wall
+P = Player
+* = Crate
+@ = Crate and Target
+O = Target
+x = PlayerTarget
+q = Player and PlayerTarget
+z = Crate and PlayerTarget
+N = Nothing
+
+=======
+SOUNDS
+=======
+
+================
+COLLISIONLAYERS
+================
+
+Background
+Nothing
+Target, PlayerTarget
+
+PlayerCrateRightMarker
+PlayerCrateLeftMarker
+PlayerCrateAboveMarker
+PlayerCrateBelowMarker
+CratePlayerRightMarker
+CratePlayerAboveMarker
+CratePlayerLeftMarker
+CratePlayerBelowMarker
+
+Player, Wall, Crate
+WallBase  ( Note WallBase drawn on top of Wall as it's just decoration )
+MovedPlayerMarker, MovedCrateMarker, NextPlayerPositionMarker
+
+CrateOnTargetMarker, PlayerOnTargetMarker
+
+======
+RULES
+======
+
+
+[ > Player | Crate ] -> [ > Player | > Crate > MovedCrateMarker ]
+[ ^ Player | Crate ] -> [ ^ Player | ^ Crate ^ MovedCrateMarker ]
+[ < Player | Crate ] -> [ < Player | < Crate < MovedCrateMarker ]
+[ v Player | Crate ] -> [ v Player | v Crate v MovedCrateMarker ]
+[ > Crate | Crate ] -> [ > Crate | > Crate ]
+[ > MovedCrateMarker | Wall ] -> cancel
+
+[ > Player | ] -> [ > Player | NextPlayerPositionMarker ]
+[ NextPlayerPositionMarker | Crate ] -> [NextPlayerPositionMarker | Crate MovedCrateMarker ]
+[ NextPlayerPositionMarker | ... | Crate no MovedCrateMarker ] -> [ NextPlayerPositionMarker | ... | > Crate ]
+
+( Mark joining when box/player are adjacent )
+[> Player PlayerCrateRightMarker ] -> [> Player > PlayerCrateRightMarker ]
+[> Player PlayerCrateLeftMarker ] -> [> Player > PlayerCrateLeftMarker ]
+[> Player PlayerCrateAboveMarker ] -> [> Player > PlayerCrateAboveMarker ]
+[> Player PlayerCrateBelowMarker ] -> [> Player > PlayerCrateBelowMarker ]
+[> Crate CratePlayerRightMarker ] -> [> Crate > CratePlayerRightMarker ]
+[> Crate CratePlayerLeftMarker ] -> [> Crate > CratePlayerLeftMarker ]
+[> Crate CratePlayerAboveMarker ] -> [> Crate > CratePlayerAboveMarker ]
+[> Crate CratePlayerBelowMarker ] -> [> Crate > CratePlayerBelowMarker ]
+
+
+late [ MovedCrateMarker ] -> [ ]
+late [ NextPlayerPositionMarker ] -> [ ]
+
+( Mark when crates or the player are on their target )
+late [Player PlayerTarget no PlayerOnTargetMarker] -> [Player PlayerTarget PlayerOnTargetMarker]
+late [PlayerOnTargetMarker no Player] -> [ ]
+late [Crate Target no CrateOnTargetMarker] -> [Crate Target CrateOnTargetMarker]
+late [CrateOnTargetMarker no Crate] -> [ ]
+
+late DOWN [ Wall | no Wall ] -> [WallBase Wall | ]
+late Down [ WallBase | Wall ] -> [ | Wall ]
+
+late RIGHT [ Player no PlayerCrateRightMarker | Crate ] -> [ Player PlayerCrateRightMarker | Crate CratePlayerLeftMarker]
+late UP    [ Player no PlayerCrateAboveMarker | Crate ] -> [ Player PlayerCrateAboveMarker | Crate CratePlayerBelowMarker]
+late LEFT  [ Player no PlayerCrateLeftMarker | Crate ] ->  [ Player PlayerCrateLeftMarker | Crate CratePlayerRightMarker ]
+late DOWN  [ Player no PlayerCrateBelowMarker | Crate ] -> [ Player PlayerCrateBelowMarker | Crate CratePlayerAboveMarker ]
+
+
+( late [ stationary MovedCrateMarker ] -> [ ]  )
+( late [ stationary MovedPlayerMarker ] -> [ ] )
+
+==============
+WINCONDITIONS
+==============
+
+all Target on Crate
+all Player on PlayerTarget
+
+=======
+LEVELS
+=======
+
+
+(Basic introduction)
+
+##############
+########.....#
+#.######.....#
+###...##....##
+#.#.....*..*##
+#.#........p##
+#.#.#...#...##
+#.#.#...#.#.o#
+#.#.#...#o..x#
+#.#.........##
+#.#..........#
+#.#...###...##
+#########...##
+##############
+
+
+(Easy 3)
+###########
+#.........#
+#.........#
+#..*....#.#
+#...o...x.#
+#....o....#
+#.....*.#.#
+#.........#
+#..p......#
+###########
+
+
+(Easy 2)
+##########
+#........#
+#..#.....#
+#..z..o..#
+#.....#..#
+#..*.....#
+#..#.....#
+#p..o....#
+##########
+
+(Easy 1)
+##########
+#q.....###
+#........#
+#.#*.#...#
+#.#.O.#..#
+#....*...#
+#..#.#...#
+#.O....#.#
+##########
+
+(Easy 4)
+#########nnnnnn
+##.....##nnnnnn
+##.#...########
+##......#.....#
+##..#*..#...x.#
+##............#
+#.....*.......#
+#.......#.....#
+#.......#.opo.#
+#.......#.....#
+###############
+
+(Easy 5)
+#########nnnnnn
+##.....##nnnnnn
+##...#.##nnnnnn
+##.#*..########
+##......#.....#
+##..#*..#...x.#
+##............#
+#.....*.......#
+#.......#...o.#
+#.......#.opo.#
+#.......#.....#
+###############
+
+(Medium 1 - not fully tested for simpler solutions )
+###########
+#.....p...#
+#.o#..###.#
+#.........#
+#..#..#.#.#
+#...#..*..#
+##.....#..#
+n#.#.*..#.#
+n#..#.....#
+n#..#*...x#
+n#..o....o#
+n#.o....#.#
+n#....###*#
+n##########
