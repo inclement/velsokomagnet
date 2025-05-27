@@ -164,6 +164,33 @@ red
 NextPlayerPositionMarker
 purple
 
+
+IntroCrate
+#ee8822
+.000.
+00000
+00000
+00000
+.000.
+
+IntroCrateTarget
+#c9c9c9 #eeeeee green
+10001
+00000
+00200
+00000
+10001
+
+IntroPlayerTarget
+#c9c9c9 #eeeeee green
+11111
+11111
+11211
+11111
+11111
+
+
+
 =======
 LEGEND
 =======
@@ -178,6 +205,8 @@ x = PlayerTarget
 q = Player and PlayerTarget
 z = Crate and PlayerTarget
 N = Nothing
+i = IntroCrate
+j = IntroCrateTarget
 
 =======
 SOUNDS
@@ -189,7 +218,7 @@ COLLISIONLAYERS
 
 Background
 Nothing
-Target, PlayerTarget
+Target, PlayerTarget, IntroCrateTarget, IntroPlayerTarget
 
 PlayerCrateRightMarker
 PlayerCrateLeftMarker
@@ -200,7 +229,7 @@ CratePlayerAboveMarker
 CratePlayerLeftMarker
 CratePlayerBelowMarker
 
-Player, Wall, Crate
+Player, Wall, Crate, IntroCrate
 WallBase  ( Note WallBase drawn on top of Wall as it's just decoration )
 MovedPlayerMarker, MovedCrateMarker, NextPlayerPositionMarker
 
@@ -209,6 +238,15 @@ CrateOnTargetMarker, PlayerOnTargetMarker
 ======
 RULES
 ======
+
+( Normal sokoban rules for the introductory level only )
+
+[ > Player | IntroCrate ] -> [ > Player | > IntroCrate ]
+late [IntroCrate IntroCrateTarget no CrateOnTargetMarker] -> [IntroCrate IntroCrateTarget CrateOnTargetMarker ]
+late [IntroCrate IntroCrateTarget no CrateOnTargetMarker] -> [IntroCrate IntroCrateTarget CrateOnTargetMarker ]
+
+
+( Velsokomagnet rules for other levels )
 
 
 [ > Player | Crate ] -> [ > Player | > Crate > MovedCrateMarker ]
@@ -240,7 +278,7 @@ late [ NextPlayerPositionMarker ] -> [ ]
 late [Player PlayerTarget no PlayerOnTargetMarker] -> [Player PlayerTarget PlayerOnTargetMarker]
 late [PlayerOnTargetMarker no Player] -> [ ]
 late [Crate Target no CrateOnTargetMarker] -> [Crate Target CrateOnTargetMarker]
-late [CrateOnTargetMarker no Crate] -> [ ]
+late [CrateOnTargetMarker no Crate no IntroCrate] -> [ ]
 
 late DOWN [ Wall | no Wall ] -> [WallBase Wall | ]
 late Down [ WallBase | Wall ] -> [ | Wall ]
@@ -260,6 +298,7 @@ WINCONDITIONS
 
 all Target on Crate
 all Player on PlayerTarget
+all IntroCrateTarget on IntroCrate
 
 =======
 LEVELS
@@ -274,6 +313,21 @@ LEVELS
 ( nnn#....o....#nnn )
 ( nnn#####x#####nnn )
 ( nnn###########nnn )
+
+(Normal sokoban introduction)
+
+nnnnn#####nnn
+nnnnn#iii#nnn
+######i..#nnn
+####i....#nnn
+#i.....#.#nnn
+#ip.#i.#.###n
+#i.....#.i##n
+########.i##n
+nnnn#.....i#n
+nnnn#.j...x#n
+nnnn#iii.###n
+nnnn########n
 
 
 message Test
