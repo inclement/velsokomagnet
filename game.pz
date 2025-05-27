@@ -54,20 +54,20 @@ WallBase
 11111
 
 Player
-#0055ee
+#0055ee #0044dd
 .0.0.
-00000
-.000.
-00000
+01110
+.101.
+01110
 .0.0.
 
 
 Crate
-#ee8822
+#ee8822 #dd7711
 0.0.0
-.000.
+.111.
 00000
-.000.
+.111.
 0.0.0
 
 PlayerCrateRightMarker
@@ -166,7 +166,7 @@ purple
 
 
 IntroCrate
-#ee8822 #cc6600
+#ee8822 #dd7711
 .000.
 01110
 00000
@@ -189,6 +189,21 @@ IntroPlayerTarget
 11111
 11111
 
+IntroPlayerVisualMask
+#0055ee #0044dd
+00.00
+0...0
+.....
+0...0
+00.00
+
+IntroPlayerTargetVisualMask
+#c9c9c9
+00.00
+0...0
+.....
+0...0
+00.00
 
 
 =======
@@ -219,6 +234,7 @@ COLLISIONLAYERS
 Background
 Nothing
 Target, PlayerTarget, IntroCrateTarget, IntroPlayerTarget
+IntroPlayerTargetVisualMask
 
 PlayerCrateRightMarker
 PlayerCrateLeftMarker
@@ -233,7 +249,9 @@ Player, Wall, Crate, IntroCrate
 WallBase  ( Note WallBase drawn on top of Wall as it's just decoration )
 MovedPlayerMarker, MovedCrateMarker, NextPlayerPositionMarker
 
+IntroPlayerVisualMask
 CrateOnTargetMarker, PlayerOnTargetMarker
+
 
 ======
 RULES
@@ -244,6 +262,9 @@ RULES
 [ > Player | IntroCrate ] -> [ > Player | > IntroCrate ]
 late [IntroCrate IntroCrateTarget no CrateOnTargetMarker] -> [IntroCrate IntroCrateTarget CrateOnTargetMarker ]
 late [IntroCrate IntroCrateTarget no CrateOnTargetMarker] -> [IntroCrate IntroCrateTarget CrateOnTargetMarker ]
+late [Player no IntroPlayerVisualMask] [IntroCrateTarget] -> [Player IntroPlayerVisualMask] [IntroCrateTarget]
+late [IntroPlayerVisualMask no Player] -> [ ]
+late [PlayerTarget no IntroPlayerTargetVisualMask] [IntroCrateTarget] -> [PlayerTarget IntroPlayerTargetVisualMask] [IntroCrateTarget]
 
 
 ( Velsokomagnet rules for other levels )
