@@ -166,11 +166,11 @@ purple
 
 
 IntroCrate
-#ee8822
+#ee8822 #cc6600
 .000.
+01110
 00000
-00000
-00000
+01110
 .000.
 
 IntroCrateTarget
@@ -316,6 +316,8 @@ LEVELS
 
 (Normal sokoban introduction)
 
+message (Intro 1 / 2) Sokoban was invented when a global surplus of crates and targets led to a new form of warehouse management.
+
 nnnnn#####nnn
 nnnnn#iii#nnn
 ######i..#nnn
@@ -329,8 +331,9 @@ nnnn#.j...x#n
 nnnn#iii.###n
 nnnn########n
 
+message (Intro 2 / 2) Later advances in materials science introduced the sokomagnetic force that repelled the crates...
 
-message Test
+message (Intro 2 / 2) ...also the warehouse contents were covered in velcro for storage convenience, after an unfortunate incident involving the lead engineer's car keys.
 
 (Basic introduction)
 
@@ -347,7 +350,7 @@ nnnn#.o...x#n
 nnnn#....###n
 nnnn########n
 
-
+message (1 / 10) The resulting player entity became known as...the VELSOKOMAGNET.
 
 (Easy 3)
 ###########
@@ -361,6 +364,8 @@ nnnn########n
 #..p......#
 ###########
 
+message (2 / 10) The velsokomagnet quickly became popular, since it made crate arrangement so much easier than before.
+
 
 (Easy 2)
 ##########
@@ -373,6 +378,8 @@ nnnn########n
 #p..o....#
 ##########
 
+message (3 / 10) It was initially considered quite gauche to use the velcro to trivialise the crate management.
+
 (Easy 1)
 ##########
 #q.....###
@@ -383,6 +390,25 @@ nnnn########n
 #..#.#...#
 #.O....#.#
 ##########
+
+message (4 / 10) Over time attitudes changed and some warehouse designers began relying on the velcro just as much as the sokomagnetic repulsion.
+
+(Velcro easy introduction)
+nnnn#####nn
+nnnn#...#nn
+#####.#.#nn
+###.#.#.#nn
+##.o.*..#nn
+#.ox#.#.###
+##.......##
+#.p###.#.##
+#.#..*....#
+#.........#
+######.#..#
+nnnnn#...##
+nnnnn######
+
+message (5 / 10) Even during the height of the velsokomagnet boom, the most popular warehouses eschewed relying on the velcro.
 
 (Easy 4)
 #########nnnnnn
@@ -396,6 +422,8 @@ nnnn########n
 #.......#.opo.#
 #.......#.....#
 ###############
+
+message (6 / 10) The next warehouse is the second in a twin set commemorating the 10th anniversary of the sokoban warehouse.
 
 (Easy 5)
 #########nnnnnn
@@ -411,36 +439,7 @@ nnnn########n
 #.......#.....#
 ###############
 
-(Medium? 1)
-
-nnnn######nn
-nnnn#...##nn
-#####.#..#nn
-##o##..#.###
-#o..x*#...##
-###o#......#
-###.#..*.#.#
-#.......##.#
-#..*...###.#
-#.p...####.#
-##...#####.#
-############
-
-(Velcro easy introduction)
-
-nnnn#####nn
-nnnn#...#nn
-#####.#.#nn
-###.#.#.#nn
-##.o.*..#nn
-#.ox#.#.###
-##.......##
-#.p###.#.##
-#.#..*....#
-#.........#
-######.#..#
-nnnnn#...##
-nnnnn######
+message (7 / 10) During its heights, the velsokomagnet's popularity eclipsed more traditional warehouse variants.
 
 (Velcro easy 1)
 nnnnn#######n
@@ -459,7 +458,27 @@ nnn####....#n
 nnnnnn###..#n
 nnnnnnnn####n
 
-(Velcro eary 2)
+message (8 / 10) The eventual downfall of the velsokomagnet was not due to disinterest, but economics.
+
+(Medium? 1)
+(TODO: This has a solution fail if one crate is left in the trap while the others are arranged)
+nnnn######nn
+nnnn#...##nn
+#####.#..#nn
+##o##..#.###
+#o..x*#...##
+###o#......#
+###.#..*.#.#
+#.......##.#
+#..*...###.#
+#.p...####.#
+##...#####.#
+############
+
+message (9 / 10) The materials used to create stable sokomagnetic poles became more valuable in other industries, making velsokomagnetic warehouses expensive to maintain.
+
+
+(Velcro easy 2)
 
 nnn###########nnn
 nnn####...####nnn
@@ -470,6 +489,10 @@ nnn#.........#nnn
 nnn#....o....#nnn
 nnn#####x#####nnn
 nnn###########nnn
+
+message (10 / 10) In the end velsokomagnetic warehouses were financially unsustainable. Public interest moved on, and the velsokomagnet is now mostly confined to the annals of history.
+
+message (10 / 10) This last example was the winner of a public competition, demonstrated at the world warehouse design expo using one of the last remaining velsokomagnets.
 
 (Medium 1 - not fully tested for simpler solutions )
 ###########
@@ -486,3 +509,5 @@ n#..o....o#
 n#.o....#.#
 n#....###*#
 n##########
+
+message That concludes this history of the velsokomagnetic era in sokoban warehouse arrangement. Any questions?
