@@ -265,22 +265,18 @@ all Player on PlayerTarget
 LEVELS
 =======
 
-nnnn#####nn
-nnnn#...#nn
-#####.#.#nn
-###.#.#.#nn
-##.o.*..#nn
-#.ox#.#.###
-##.......##
-##p###.#.##
-##...*....#
-##........#
-######.#..#
-nnnnn#...##
-nnnnn######
+( nnn###########nnn )
+( nnn####...####nnn )
+( nnn#.........#nnn )
+( ####.........#### )
+( #..o....***...o.# )
+( ####.......p.#### )
+( nnn#....o....#nnn )
+( nnn#####x#####nnn )
+( nnn###########nnn )
 
 
-
+message Test
 
 (Basic introduction)
 
@@ -409,6 +405,17 @@ nnn####....#n
 nnnnnn###..#n
 nnnnnnnn####n
 
+(Velcro eary 2)
+
+nnn###########nnn
+nnn####...####nnn
+nnn#.........#nnn
+####.........####
+#..o....***...o.#
+####.......p.####
+nnn#....o....#nnn
+nnn#####x#####nnn
+nnn###########nnn
 
 (Medium 1 - not fully tested for simpler solutions )
 ###########
