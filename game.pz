@@ -325,19 +325,9 @@ all IntroCrateTarget on IntroCrate
 LEVELS
 =======
 
-( nnn###########nnn )
-( nnn####...####nnn )
-( nnn#.........#nnn )
-( ####.........#### )
-( #..o....***...o.# )
-( ####.......p.#### )
-( nnn#....o....#nnn )
-( nnn#####x#####nnn )
-( nnn###########nnn )
-
 (Normal sokoban introduction)
 
-message (Intro 1 / 2) Sokoban was invented when a global surplus of crates and targets led to a new form of warehouse management.
+message (1 / 12) Sokoban was invented when a global surplus of crates and targets led to a new form of warehouse management.
 
 nnnnn#####nnn
 nnnnn#iii#nnn
@@ -352,9 +342,11 @@ nnnn#.j...x#n
 nnnn#iii.###n
 nnnn########n
 
-message (Intro 2 / 2) Later advances in materials science introduced the sokomagnetic force that repelled the crates...
+message (2 / 12) Later advances in materials science introduced the sokomagnetic force that repelled the crates...
 
-message (Intro 2 / 2) ...also the warehouse contents were covered in velcro for storage convenience, after an unfortunate incident involving the lead engineer's car keys.
+message (2 / 12) ...also the warehouse contents were covered in velcro for storage convenience, after an unfortunate incident involving the lead engineer's car keys.
+
+message (3 / 12) The player now REPELS all crates with the same row or column. Unless they're adjacent in which case it STICKS to them forever.
 
 (Basic introduction)
 
@@ -371,7 +363,8 @@ nnnn#.o...x#n
 nnnn#....###n
 nnnn########n
 
-message (1 / 10) The resulting player entity became known as...the VELSOKOMAGNET.
+message (3 / 12) The resulting entity became known as...the VELSOKOMAGNET.
+
 
 (Easy 3)
 ###########
@@ -385,7 +378,7 @@ message (1 / 10) The resulting player entity became known as...the VELSOKOMAGNET
 #..p......#
 ###########
 
-message (2 / 10) The velsokomagnet quickly became popular, since it made crate arrangement so much easier than before.
+message (4 / 12) The velsokomagnet quickly became popular, since it made crate arrangement so much easier than before.
 
 
 (Easy 2)
@@ -396,10 +389,12 @@ message (2 / 10) The velsokomagnet quickly became popular, since it made crate a
 #.....#..#
 #..*.....#
 #..#.....#
-#p..o....#
+#p.......#
+###.o.####
+###...####
 ##########
 
-message (3 / 10) It was initially considered quite gauche to use the velcro to trivialise the crate management.
+message (5 / 12) Most warehouses avoided using the velcro as doing so was considered quite gauche.
 
 (Easy 1)
 ##########
@@ -412,7 +407,7 @@ message (3 / 10) It was initially considered quite gauche to use the velcro to t
 #.O....#.#
 ##########
 
-message (4 / 10) Over time attitudes changed and some warehouse designers began relying on the velcro just as much as the sokomagnetic repulsion.
+message (6 / 12) Over time attitudes changed and some warehouse designers began relying on the velcro just as much as the sokomagnetic repulsion.
 
 (Velcro easy introduction)
 nnnn#####nn
@@ -429,7 +424,7 @@ nnnn#...#nn
 nnnnn#...##
 nnnnn######
 
-message (5 / 10) Even during the height of the velsokomagnet boom, the most popular warehouses eschewed relying on the velcro.
+message (7 / 12) Still, most warehouses relied only on the repulsion.
 
 (Easy 4)
 #########nnnnnn
@@ -444,7 +439,7 @@ message (5 / 10) Even during the height of the velsokomagnet boom, the most popu
 #.......#.....#
 ###############
 
-message (6 / 10) The next warehouse is the second in a twin set commemorating the 10th anniversary of the sokoban warehouse.
+message (8 / 12) The next warehouse is the second in a twin set commemorating the 10th anniversary of the velsokomagnet's introduction.
 
 (Easy 5)
 #########nnnnnn
@@ -460,7 +455,7 @@ message (6 / 10) The next warehouse is the second in a twin set commemorating th
 #.......#.....#
 ###############
 
-message (7 / 10) During its heights, the velsokomagnet's popularity eclipsed more traditional warehouse variants.
+message (9 / 12) During its heights, the velsokomagnet's popularity eclipsed more traditional warehouse variants.
 
 (Velcro easy 1)
 nnnnn#######n
@@ -479,24 +474,25 @@ nnn####....#n
 nnnnnn###..#n
 nnnnnnnn####n
 
-message (8 / 10) The eventual downfall of the velsokomagnet was not due to disinterest, but economics.
+message (10 / 12) The eventual downfall of the velsokomagnet was not due to disinterest, but economics.
 
 (Medium? 1)
 (TODO: This has a solution fail if one crate is left in the trap while the others are arranged)
-nnnn######nn
-nnnn#...##nn
-#####.#..#nn
-##o##..#.###
-#o..x*#...##
-###o#......#
-###.#..*.#.#
-#.......##.#
-#..*...###.#
-#.p...####.#
-##...#####.#
-############
+nnnnnnn######nn
+########...##nn
+#.o...*#.#.##nn
+########.#..#nn
+nnn##o##..#.###
+nnn#o..x*#...##
+nnn###o#......#
+nnn###.#..*.#.#
+nnn#.......##.#
+nnn#...*..###.#
+nnn#..p..####.#
+nnn##...#####.#
+nnn############
 
-message (9 / 10) The materials used to create stable sokomagnetic poles became more valuable in other industries, making velsokomagnetic warehouses expensive to maintain.
+message (11 / 12) The materials used to create stable sokomagnetic poles became more valuable in other industries, making velsokomagnetic warehouses expensive to maintain.
 
 
 (Velcro easy 2)
@@ -511,9 +507,9 @@ nnn#....o....#nnn
 nnn#####x#####nnn
 nnn###########nnn
 
-message (10 / 10) In the end velsokomagnetic warehouses were financially unsustainable. Public interest moved on, and the velsokomagnet is now mostly confined to the annals of history.
+message (12 / 12) In the end velsokomagnetic warehouses were financially unsustainable. Public interest moved on, and the velsokomagnet is now mostly confined to the annals of history.
 
-message (10 / 10) This last example was the winner of a public competition, demonstrated at the world warehouse design expo using one of the last remaining velsokomagnets.
+message (12 / 12) This last example was the winner of a public competition, demonstrated at the world warehouse design expo using one of the last remaining velsokomagnets.
 
 (Medium 1 - not fully tested for simpler solutions )
 ###########
