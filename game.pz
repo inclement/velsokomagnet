@@ -1,6 +1,6 @@
 title History of the Velsokomagnet
 author inclement
-homepage www.puzzlescript.net
+homepage https://www.inclem.net/
 
 require_player_movement
 key_repeat_interval 0.1
@@ -262,7 +262,11 @@ CratePlayerAboveMarker
 CratePlayerLeftMarker
 CratePlayerBelowMarker
 
+(Note these are the only actual physics objects for which we care about collision,
+ everything else is for game logic or prettiness)
 Player, Wall, Crate, IntroCrate
+
+
 WallBase  ( Note WallBase drawn on top of Wall as it's just decoration )
 MovedPlayerMarker
 MovedCrateMarker
@@ -279,8 +283,7 @@ VerticalForceMarker
 RULES
 ======
 
-( Normal sokoban rules for the introductory level only )
-
+( Normal sokoban rules for the introductory level only. )
 [ > Player | IntroCrate ] -> [ > Player | > IntroCrate ]
 late [IntroCrate IntroCrateTarget no CrateOnTargetMarker] -> [IntroCrate IntroCrateTarget CrateOnTargetMarker ]
 late [IntroCrate IntroCrateTarget no CrateOnTargetMarker] -> [IntroCrate IntroCrateTarget CrateOnTargetMarker ]
@@ -289,26 +292,50 @@ late [IntroPlayerVisualMask no Player] -> [ ]
 late [PlayerTarget no IntroPlayerTargetVisualMask] [IntroCrateTarget] -> [PlayerTarget IntroPlayerTargetVisualMask] [IntroCrateTarget]
 
 
-( Velsokomagnet rules for other levels )
+( Velsokomagnet rules for other levels:)
 
-
+(The player pushes crates when moving directly into them. Pushed crates
+ are marked with a MovedCrateMarker because we want to distinguish
+ crates the player directly pushed this way from those pushed from afar.)
 [ > Player | Crate ] -> [ > Player | > Crate > MovedCrateMarker ]
 [ ^ Player | Crate ] -> [ ^ Player | ^ Crate ^ MovedCrateMarker ]
 [ < Player | Crate ] -> [ < Player | < Crate < MovedCrateMarker ]
 [ v Player | Crate ] -> [ v Player | v Crate v MovedCrateMarker ]
+
+(Crates can push other crates, but if the player is trying to directly
+ push a crate into a blockage then cancel the move. Note we can't just
+ rely on the collision layer logic because we're adding in rigid-body
+ logic for a Player that is velcroed to any crates; without these rules
+ the Player could move along the side of several adjacent crates against
+ a blockage)
 [ > Crate | Crate ] -> [ > Crate | > Crate ]
+(The following works because we only have up to 4 crates in a level.
+ This could be done in a maybe-better way using more objects carrying
+ collision logic, but doesn't seem worth worrying about given this is
+ simple enough.)
+[ > MovedCrateMarker | Crate | Crate | Crate | Crate | Wall ] -> cancel
+[ > MovedCrateMarker | Crate | Crate | Crate | Wall ] -> cancel
+[ > MovedCrateMarker | Crate | Crate | Wall ] -> cancel
+[ > MovedCrateMarker | Crate | Wall ] -> cancel
 [ > MovedCrateMarker | Wall ] -> cancel
 
+(We could run the repulsion logic in a single pass, but we use "again"
+ so that we can have a brief marker when the repulsion has been applied.
+ This hopefully reminds the player of the effect.)
 [ > Player | ] -> [ > Player | JustMovedPlayerMarker ] again
+
+(The Player will only be on top of a JustMovedPlayerMarker in the "again"
+ pass. These rules apply repulsion in that pass.)
 [ Player JustMovedPlayerMarker | Crate ] -> [Player JustMovedPlayerMarker | Crate MovedCrateMarker ]
 [ Player JustMovedPlayerMarker | ... | Crate no MovedCrateMarker ] -> [ Player JustMovedPlayerMarker | ... | > Crate ]
-
 [Player JustMovedPlayerMarker] -> [Player]
 
+(If any JustMovedPlayerMarker is present then we're in the first pass, so
+ draw repulsion lines to mark the logic being applied.)
 horizontal [Crate no MovedCrateMarker |...| no HorizontalForceMarker |...| JustMovedPlayerMarker] -> [Crate |...| HorizontalForceMarker | ... | JustMovedPlayerMarker]
 vertical [Crate no MovedCrateMarker| ... |no VerticalForceMarker|...| JustMovedPlayerMarker] -> [Crate |...| VerticalForceMarker | ... | JustMovedPlayerMarker]
 
-( Mark joining when box/player are adjacent )
+(If we're drawing any nice markers for being velcroed, move these with the player.)
 [> Player PlayerCrateRightMarker ] -> [> Player > PlayerCrateRightMarker ]
 [> Player PlayerCrateLeftMarker ] -> [> Player > PlayerCrateLeftMarker ]
 [> Player PlayerCrateAboveMarker ] -> [> Player > PlayerCrateAboveMarker ]
@@ -318,34 +345,38 @@ vertical [Crate no MovedCrateMarker| ... |no VerticalForceMarker|...| JustMovedP
 [> Crate CratePlayerAboveMarker ] -> [> Crate > CratePlayerAboveMarker ]
 [> Crate CratePlayerBelowMarker ] -> [> Crate > CratePlayerBelowMarker ]
 
-
+(If we have finished in the "again" pass, we can now remove the force markers.
+ Note because this is a "late" rule the player will have moved on top of
+ the marker on the first pass through.)
 late [Player no JustMovedPlayerMarker] [HorizontalForceMarker] -> [Player] []
 late [Player no JustMovedPlayerMarker] [VerticalForceMarker] -> [Player] []
 
+(Clear up logic helper markers)
 late [ MovedCrateMarker ] -> [ ]
 
-( Mark when crates or the player are on their target )
+(Draw an indicator when crates or the player are on their respective targets )
 late [Player PlayerTarget no PlayerOnTargetMarker] -> [Player PlayerTarget PlayerOnTargetMarker]
 late [PlayerOnTargetMarker no Player] -> [ ]
 late [Crate Target no CrateOnTargetMarker] -> [Crate Target CrateOnTargetMarker]
 late [CrateOnTargetMarker no Crate no IntroCrate] -> [ ]
 
+(Draw cosmetic markers on some walls for visual variety)
 late DOWN [ Wall | no Wall ] -> [WallBase Wall | ]
 late Down [ WallBase | Wall ] -> [ | Wall ]
 
+(If we're next to a crate but haven't yet drawn a cosmetic marker,
+ do that now)
 late RIGHT [ Player no PlayerCrateRightMarker | Crate ] -> [ Player PlayerCrateRightMarker | Crate CratePlayerLeftMarker]
 late UP    [ Player no PlayerCrateAboveMarker | Crate ] -> [ Player PlayerCrateAboveMarker | Crate CratePlayerBelowMarker]
 late LEFT  [ Player no PlayerCrateLeftMarker | Crate ] ->  [ Player PlayerCrateLeftMarker | Crate CratePlayerRightMarker ]
 late DOWN  [ Player no PlayerCrateBelowMarker | Crate ] -> [ Player PlayerCrateBelowMarker | Crate CratePlayerAboveMarker ]
 
 
-( late [ stationary MovedCrateMarker ] -> [ ]  )
-( late [ stationary MovedPlayerMarker ] -> [ ] )
-
 ==============
 WINCONDITIONS
 ==============
 
+(Note these are specified so as to work also in the intro level that has no Crates)
 all Target on Crate
 all Player on PlayerTarget
 all IntroCrateTarget on IntroCrate
@@ -520,10 +551,11 @@ nnn####....#n
 nnnnnn###..#n
 nnnnnnnn####n
 
-message (11 / 12) The materials used to create stable sokomagnetic poles became more valuable in other industries, making velsokomagnetic warehouses expensive to maintain.
+message (11 / 12) The materials used to create stable sokomagnetic monopoles became more valuable in other industries, making velsokomagnetic warehouses expensive to maintain.
 
 (Medium? 1)
-(TODO: This has a solution fail if one crate is left in the trap while the others are arranged)
+(I "fixed" an intended-logic break with the upper-left counter crate, but that's a bit
+ rubbish as nobody likes counters :< )
 nnnnnnn######nn
 ########...##nn
 #.o...*#.#.##nn
