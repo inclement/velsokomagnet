@@ -305,8 +305,8 @@ late [PlayerTarget no IntroPlayerTargetVisualMask] [IntroCrateTarget] -> [Player
 
 [Player NextPlayerPositionMarker] -> [Player]
 
-horizontal [Crate | ... |no HorizontalForceMarker|...| NextPlayerPositionMarker] -> [Crate |...| HorizontalForceMarker | ... | NextPlayerPositionMarker]
-vertical [Crate | ... |no VerticalForceMarker|...| NextPlayerPositionMarker] -> [Crate |...| VerticalForceMarker | ... | NextPlayerPositionMarker]
+horizontal [Crate no MovedCrateMarker |...| no HorizontalForceMarker |...| NextPlayerPositionMarker] -> [Crate |...| HorizontalForceMarker | ... | NextPlayerPositionMarker]
+vertical [Crate no MovedCrateMarker| ... |no VerticalForceMarker|...| NextPlayerPositionMarker] -> [Crate |...| VerticalForceMarker | ... | NextPlayerPositionMarker]
 
 ( Mark joining when box/player are adjacent )
 [> Player PlayerCrateRightMarker ] -> [> Player > PlayerCrateRightMarker ]
