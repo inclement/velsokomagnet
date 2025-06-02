@@ -381,6 +381,9 @@ all Target on Crate
 all Player on PlayerTarget
 all IntroCrateTarget on IntroCrate
 
+(Make sure win conditions only trigger at the end of the "again" pass)
+no JustMovedPlayerMarker
+
 =======
 LEVELS
 =======
