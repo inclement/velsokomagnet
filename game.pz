@@ -1,6 +1,6 @@
 title History of the Velsokomagnet
 author inclement
-homepage www.puzzlescript.net
+homepage https://www.inclem.net/
 
 require_player_movement
 key_repeat_interval 0.1
@@ -327,7 +327,7 @@ LEVELS
 
 (Normal sokoban introduction)
 
-message (1 / 12) Sokoban was invented when a global surplus of crates and targets led to a new form of warehouse management.
+message (1 / 12) The original sokoban was invented when a global surplus of crates and targets necessitated a new form of warehouse management. PUSH the free crate to its target location.
 
 nnnnn#####nnn
 nnnnn#iii#nnn
@@ -346,7 +346,7 @@ message (2 / 12) Later advances in materials science introduced the sokomagnetic
 
 message (2 / 12) ...also the warehouse contents were covered in velcro for storage convenience, after an unfortunate incident involving the lead engineer's car keys.
 
-message (3 / 12) The player now REPELS all crates with the same row or column. Unless they're adjacent in which case it STICKS to them forever.
+message (2 / 12) The player now REPELS all crates with the same row or column...unless they're adjacent in which case it STICKS to them forever. Press "R" to restart if necessary.
 
 (Basic introduction)
 
@@ -378,7 +378,7 @@ message (3 / 12) The resulting entity became known as...the VELSOKOMAGNET.
 #..p......#
 ###########
 
-message (4 / 12) The velsokomagnet quickly became popular, since it made crate arrangement so much easier than before.
+message (4 / 12) The velsokomagnet quickly became popular. Crate manipulation was easier than ever!
 
 
 (Easy 2)
@@ -394,20 +394,7 @@ message (4 / 12) The velsokomagnet quickly became popular, since it made crate a
 ###...####
 ##########
 
-message (5 / 12) Most warehouses avoided using the velcro as doing so was considered quite gauche.
-
-(Easy 1)
-##########
-#q.....###
-#........#
-#.#*.#...#
-#.#.O.#..#
-#....*...#
-#..#.#...#
-#.O....#.#
-##########
-
-message (6 / 12) Over time attitudes changed and some warehouse designers began relying on the velcro just as much as the sokomagnetic repulsion.
+message (5 / 12) Using the velcro was considered quite gauche, but was not unknown.
 
 (Velcro easy introduction)
 nnnn#####nn
@@ -424,7 +411,37 @@ nnnn#...#nn
 nnnnn#...##
 nnnnn######
 
-message (7 / 12) Still, most warehouses relied only on the repulsion.
+
+message (6 / 12) Still, the most high-profile designers generally felt the sokomagnetic interaction was more stimulating to the intellect.
+
+(Easy 1)
+##########
+#p.....###
+#........#
+#.#*.#...#
+#x#.O.#..#
+#....*...#
+#..#.#...#
+#.O....#.#
+##########
+
+message (7 / 12) Attitudes steadily changed until the velcro was often a key part of the solution.
+
+(Velcro easy 2)
+
+nnn###########nnn
+nnn####...####nnn
+nnn#.........#nnn
+####.........####
+#..o....***...o.#
+####.......p.####
+nnn#....o....#nnn
+nnn#####x#####nnn
+nnn###########nnn
+
+
+
+message (8 / 12) During its heights, the velsokomagnet's popularity eclipsed more traditional warehouse variants.
 
 (Easy 4)
 #########nnnnnn
@@ -439,7 +456,7 @@ message (7 / 12) Still, most warehouses relied only on the repulsion.
 #.......#.....#
 ###############
 
-message (8 / 12) The next warehouse is the second in a twin set commemorating the 10th anniversary of the velsokomagnet's introduction.
+message (9 / 12) For instance, this next warehouse is the second in a duet of puzzles produced as part of Queen Elizabeth's Ruby Jubilee.
 
 (Easy 5)
 #########nnnnnn
@@ -455,7 +472,7 @@ message (8 / 12) The next warehouse is the second in a twin set commemorating th
 #.......#.....#
 ###############
 
-message (9 / 12) During its heights, the velsokomagnet's popularity eclipsed more traditional warehouse variants.
+message (10 / 12) The eventual downfall of the velsokomagnet was not due to disinterest, but economics.
 
 (Velcro easy 1)
 nnnnn#######n
@@ -474,7 +491,7 @@ nnn####....#n
 nnnnnn###..#n
 nnnnnnnn####n
 
-message (10 / 12) The eventual downfall of the velsokomagnet was not due to disinterest, but economics.
+message (11 / 12) The materials used to create stable sokomagnetic poles became more valuable in other industries, making velsokomagnetic warehouses expensive to maintain.
 
 (Medium? 1)
 (TODO: This has a solution fail if one crate is left in the trap while the others are arranged)
@@ -492,24 +509,10 @@ nnn#..p..####.#
 nnn##...#####.#
 nnn############
 
-message (11 / 12) The materials used to create stable sokomagnetic poles became more valuable in other industries, making velsokomagnetic warehouses expensive to maintain.
-
-
-(Velcro easy 2)
-
-nnn###########nnn
-nnn####...####nnn
-nnn#.........#nnn
-####.........####
-#..o....***...o.#
-####.......p.####
-nnn#....o....#nnn
-nnn#####x#####nnn
-nnn###########nnn
 
 message (12 / 12) In the end velsokomagnetic warehouses were financially unsustainable. Public interest moved on, and the velsokomagnet is now mostly confined to the annals of history.
 
-message (12 / 12) This last example was the winner of a public competition, demonstrated at the world warehouse design expo using one of the last remaining velsokomagnets.
+message (12 / 12) This last example was the winner of a public competition, demonstrated last year at the world warehouse design expo using one of the last remaining velsokomagnets.
 
 (Medium 1 - not fully tested for simpler solutions )
 ###########
