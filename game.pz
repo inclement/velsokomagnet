@@ -162,7 +162,7 @@ lightgreen
 MovedPlayerMarker
 red
 
-NextPlayerPositionMarker
+JustMovedPlayerMarker
 transparent
 
 
@@ -266,7 +266,7 @@ Player, Wall, Crate, IntroCrate
 WallBase  ( Note WallBase drawn on top of Wall as it's just decoration )
 MovedPlayerMarker
 MovedCrateMarker
-NextPlayerPositionMarker
+JustMovedPlayerMarker
 
 IntroPlayerVisualMask
 CrateOnTargetMarker, PlayerOnTargetMarker
@@ -299,14 +299,14 @@ late [PlayerTarget no IntroPlayerTargetVisualMask] [IntroCrateTarget] -> [Player
 [ > Crate | Crate ] -> [ > Crate | > Crate ]
 [ > MovedCrateMarker | Wall ] -> cancel
 
-[ > Player | ] -> [ > Player | NextPlayerPositionMarker ] again
-[ Player NextPlayerPositionMarker | Crate ] -> [Player NextPlayerPositionMarker | Crate MovedCrateMarker ]
-[ Player NextPlayerPositionMarker | ... | Crate no MovedCrateMarker ] -> [ Player NextPlayerPositionMarker | ... | > Crate ]
+[ > Player | ] -> [ > Player | JustMovedPlayerMarker ] again
+[ Player JustMovedPlayerMarker | Crate ] -> [Player JustMovedPlayerMarker | Crate MovedCrateMarker ]
+[ Player JustMovedPlayerMarker | ... | Crate no MovedCrateMarker ] -> [ Player JustMovedPlayerMarker | ... | > Crate ]
 
-[Player NextPlayerPositionMarker] -> [Player]
+[Player JustMovedPlayerMarker] -> [Player]
 
-horizontal [Crate no MovedCrateMarker |...| no HorizontalForceMarker |...| NextPlayerPositionMarker] -> [Crate |...| HorizontalForceMarker | ... | NextPlayerPositionMarker]
-vertical [Crate no MovedCrateMarker| ... |no VerticalForceMarker|...| NextPlayerPositionMarker] -> [Crate |...| VerticalForceMarker | ... | NextPlayerPositionMarker]
+horizontal [Crate no MovedCrateMarker |...| no HorizontalForceMarker |...| JustMovedPlayerMarker] -> [Crate |...| HorizontalForceMarker | ... | JustMovedPlayerMarker]
+vertical [Crate no MovedCrateMarker| ... |no VerticalForceMarker|...| JustMovedPlayerMarker] -> [Crate |...| VerticalForceMarker | ... | JustMovedPlayerMarker]
 
 ( Mark joining when box/player are adjacent )
 [> Player PlayerCrateRightMarker ] -> [> Player > PlayerCrateRightMarker ]
@@ -319,8 +319,8 @@ vertical [Crate no MovedCrateMarker| ... |no VerticalForceMarker|...| NextPlayer
 [> Crate CratePlayerBelowMarker ] -> [> Crate > CratePlayerBelowMarker ]
 
 
-late [Player no NextPlayerPositionMarker] [HorizontalForceMarker] -> [Player] []
-late [Player no NextPlayerPositionMarker] [VerticalForceMarker] -> [Player] []
+late [Player no JustMovedPlayerMarker] [HorizontalForceMarker] -> [Player] []
+late [Player no JustMovedPlayerMarker] [VerticalForceMarker] -> [Player] []
 
 late [ MovedCrateMarker ] -> [ ]
 
